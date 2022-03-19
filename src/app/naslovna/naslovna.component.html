@@ -1,0 +1,12 @@
+<div class="container">
+  <div *ngIf="user.ime">
+    <h1>Dobar dan, {{user.ime}}! 👋</h1>
+  </div>
+
+  <h3>Pretraži najpopularnije knjige! (Google API)</h3>
+  <input class="form-control" [(ngModel)]="query" type="text" placeholder="Pretraga naziva knjige" style="margin-top: 20px; padding: 10px; border-radius: 10px; width: 300px;"/>
+  <button class="btn btn-info" (click)="fetchData()" style="margin-top: 20px;">Pretraži</button>
+  <div *ngIf="knjigas.length > 0">
+    <div *ngFor="let knjiga of knjigas">{{knjiga.volumeInfo.title}}</div>
+  </div>
+</div>

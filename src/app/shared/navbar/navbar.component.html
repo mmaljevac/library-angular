@@ -1,0 +1,15 @@
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+  <div class="container">
+  <div collapse navbar-collapse>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" [ngClass]="getClass('/')"><a class="nav-link" [routerLink]="['']">📚 Naslovna</a></li>
+      <li class="nav-item" [ngClass]="getClass('/zanrovi')"><a class="nav-link" [routerLink]="['/zanrovi']">Žanrovi</a></li>
+      <li class="nav-item" [ngClass]="getClass('/autori')"><a class="nav-link" [routerLink]="['/autori']">Autori</a></li>
+      <li class="nav-item" [ngClass]="getClass('/posudbe')"><a class="nav-link" [routerLink]="['/posudbe']">Posudbe</a></li>
+      <li class="nav-item" [ngClass]="getClass('/korisnici')"><a class="nav-link" [routerLink]="['/korisnici']">Korisnici</a></li>
+      <li class="nav-item" ><a class="nav-link" (click)="logout()" *ngIf="authenticated">Logout 📚</a></li>
+      <li class="nav-item" ><a class="nav-link" (click)="logout()" *ngIf="!authenticated">Login 📚</a></li>
+    </ul>
+  </div>
+  </div>
+</nav>

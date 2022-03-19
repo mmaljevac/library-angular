@@ -1,0 +1,8 @@
+a {
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}

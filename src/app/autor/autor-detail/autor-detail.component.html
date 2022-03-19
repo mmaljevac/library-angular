@@ -1,0 +1,59 @@
+<div class="container">
+  <div>
+    <input class="form-control" [(ngModel)]="query" type="text" placeholder="Pretraga naziva knjige" style="margin-top: 20px; padding: 10px; border-radius: 10px;"/>
+  <table class="table table-striped table-bordered table-hover">
+    <tr>
+      <th>#</th>
+      <th></th>
+      <th>Naziv</th>
+      <th>Ocjena</th>
+      <th>Opis</th>
+      <th></th>
+
+      <!--          <th>EDIT</th>-->
+      <!--          <th>DELETE</th>-->
+
+    </tr>
+    <tr *ngFor="let k of knjige | filter: 'naziv' : query; let i = index">
+<!--    <tr *ngFor="let k of knjige; let i = index">-->
+      <td>{{i+1}}</td>
+      <td><img src="{{k.urlSlike}}" width="100px"></td>
+      <td><p style="font-size: 18px;">{{k.naziv}}</p></td>
+      <td><p style="font-size: 18px;">{{k.ocjena}}</p></td>
+      <td><p>{{k.opis}}</p></td>
+      <td><button class="btn btn-outline-info" [routerLink]="['/posudbe']">Posudi</button></td>
+      <!--      <td><button class="btn btn-info" (click)="startEditing(k)">Edit</button></td>-->
+      <!--      <td><button class="btn btn-danger" (click)="deleteKnjiga(i)">Delete</button></td>-->
+    </tr>
+  </table>
+
+    <button class="btn btn-success" (click)="add=!add">Dodaj novu knjigu!</button><br/>
+
+    <div *ngIf="add">
+
+      <div style="margin: 10px 0;">
+      Naziv:<br/>
+      <input  type="text" [(ngModel)]="new.naziv"/><br/>
+      Opis:<br/>
+      <input  type="text" [(ngModel)]="new.opis"/><br/>
+      Ocjena:<br/>
+      <input  type="text" [(ngModel)]="new.ocjena"/><br/>
+      Godina izdanja:<br/>
+      <input  type="text" [(ngModel)]="new.godina"/><br/>
+      Url slike:<br/>
+      <input  type="text" [(ngModel)]="new.urlSlike"/><br/>
+      ID žanra:<br/>
+      <input  type="text" [(ngModel)]="new.zanrId"/><br/>
+      ID autora:<br/>
+      <input  type="text" [(ngModel)]="new.autorId"/><br/>
+      </div>
+
+
+      <button class="btn btn-success" (click)="addKnjiga()">Add</button>
+    </div>
+  </div>
+
+  <div>
+    <button class="btn btn-secondary" [routerLink]="['../']" style="margin-top: 10px;">Nazad</button>
+  </div>
+</div>

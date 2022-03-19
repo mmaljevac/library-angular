@@ -1,0 +1,43 @@
+<div class="container" *ngIf="user.ime">
+<!--<input [(ngModel)]="query" type="text"/>-->
+<table class="table table-striped table-bordered table-hover">
+  <tr>
+    <th>#</th>
+    <th>Žanr</th>
+    <th>EDIT</th>
+    <th>DELETE</th>
+
+  </tr>
+  <tr *ngFor="let zanr of zanrovi; let i=index;">
+    <td>{{i+1}}</td>
+
+<!--    <td><a [routerLink]="[zanr.id]">{{zanr.naziv}}</a></td>-->
+    <td *ngIf="editingIndex!=i"><a [routerLink]="[zanr.id]">>> {{zanr.naziv}} <<</a></td>
+    <td *ngIf="editingIndex==i">
+      <fieldset class="form-group">
+        <input class="form-control" type="text" [(ngModel)]="editingZanr.naziv"/>
+      </fieldset>
+    </td>
+
+    <td *ngIf="editingIndex!=i"><button class="btn btn-outline-info" (click)="setEdit(i)">Edit</button></td>
+    <td *ngIf="editingIndex==i"><button class="btn btn-outline-info" (click)="doneEditing(i)">Done</button></td>
+
+    <td><button class="btn btn-outline-danger" (click)="deleteZanr(i)">Delete</button></td>
+  </tr>
+</table>
+
+<button class="btn btn-success" (click)="add=!add">Dodaj novi žanr!</button><br/>
+
+<div *ngIf="add">
+
+  <div style="margin: 10px 0;">
+    Naziv:<br/>
+    <input type="text" [(ngModel)]="new.naziv"/><br/>
+  </div>
+
+  <button class="btn btn-success" (click)="addZanr()">Add</button>
+</div>
+</div>
+<div *ngIf="!user.ime" style="text-align: center;">
+  <h3>Molim prijavite se za prikaz stranice!</h3>
+</div>

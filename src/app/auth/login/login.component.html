@@ -1,0 +1,13 @@
+<div class="container">
+  <form class="signin-form form" fxLayout="column" fxLayoutAlign="center center" (submit)="onLogin()" [formGroup]="signinForm">
+    <fieldset class="form-group form-item">
+      <input class="form-control" style="margin: 10px 0;" type="text" formControlName="email" placeholder="Enter email">
+    </fieldset>
+    <fieldset class="form-group form-item">
+      <input class="form-control" type="password" formControlName="lozinka" placeholder="Enter lozinka">
+    </fieldset>
+    <button class="btn btn-success" type="submit" style="margin: 10px 0;" [disabled]="signinForm.invalid">Login</button>
+    <button class="btn btn-primary" [routerLink]="['/register']"> Register </button>
+    <div *ngIf="errorMessage">{{errorMessage}}</div>
+  </form>
+</div>

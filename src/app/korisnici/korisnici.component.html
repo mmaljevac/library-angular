@@ -1,0 +1,45 @@
+<div class="container" *ngIf="user.authLvl">
+  <table class="table table-striped table-bordered table-hover">
+    <tr>
+      <th>#</th>
+      <th>Ime</th>
+      <th>Prezime</th>
+      <th>E-mail</th>
+      <th>EDIT</th>
+      <th>DELETE</th>
+
+    </tr>
+    <tr *ngFor="let korisnik of korisnici; let i=index;">
+      <td>{{i+1}}</td>
+
+      <td *ngIf="editingIndex!=i">{{korisnik.ime}}</td>
+      <td *ngIf="editingIndex==i">
+        <fieldset class="form-group">
+          <input class="form-control" type="text" [(ngModel)]="editingKorisnik.ime"/>
+        </fieldset>
+      </td>
+
+      <td *ngIf="editingIndex!=i">{{korisnik.prezime}}</td>
+      <td *ngIf="editingIndex==i">
+        <fieldset class="form-group">
+          <input class="form-control" type="text" [(ngModel)]="editingKorisnik.prezime"/>
+        </fieldset>
+      </td>
+
+      <td *ngIf="editingIndex!=i">{{korisnik.email}}</td>
+      <td *ngIf="editingIndex==i">
+        <fieldset class="form-group">
+          <input class="form-control" type="text" [(ngModel)]="editingKorisnik.email"/>
+        </fieldset>
+      </td>
+
+      <td *ngIf="editingIndex!=i"><button class="btn btn-outline-info" (click)="setEdit(i)">Edit</button></td>
+      <td *ngIf="editingIndex==i"><button class="btn btn-outline-info" (click)="doneEditing(i)">Done</button></td>
+
+      <td><button class="btn btn-outline-danger" (click)="deleteKorisnik(i)">Delete</button></td>
+    </tr>
+  </table>
+</div>
+<div *ngIf="!user.authLvl" style="text-align: center;">
+  <h3>Pristup omogucen samo adminima!</h3>
+</div>

@@ -1,0 +1,71 @@
+<div class="container" *ngIf="user.ime">
+  <table class="table table-striped table-bordered table-hover">
+    <tr>
+      <th>#</th>
+      <th>Broj posudbe</th>
+      <th>Datum posudbe</th>
+      <th>ID korisnika</th>
+      <th>ID knjige</th>
+      <th>EDIT</th>
+      <th>DELETE</th>
+
+    </tr>
+    <tr *ngFor="let posudba of posudbe; let i=index;">
+      <td>{{i+1}}</td>
+
+      <td *ngIf="editingIndex!=i">{{posudba.brPosudbe}}</td>
+      <td *ngIf="editingIndex==i">
+        <fieldset class="form-group">
+          <input class="form-control" type="text" [(ngModel)]="editingPosudba.brPosudbe"/>
+        </fieldset>
+      </td>
+
+      <td *ngIf="editingIndex!=i">{{posudba.datumPosudbe}}</td>
+      <td *ngIf="editingIndex==i">
+        <fieldset class="form-group">
+          <input class="form-control" type="text" [(ngModel)]="editingPosudba.datumPosudbe"/>
+        </fieldset>
+      </td>
+
+      <td *ngIf="editingIndex!=i">{{posudba.korisnikId}}</td>
+      <td *ngIf="editingIndex==i">
+        <fieldset class="form-group">
+          <input class="form-control" type="text" [(ngModel)]="editingPosudba.korisnikId"/>
+        </fieldset>
+      </td>
+
+      <td *ngIf="editingIndex!=i">{{posudba.knjigaId}}</td>
+      <td *ngIf="editingIndex==i">
+        <fieldset class="form-group">
+          <input class="form-control" type="text" [(ngModel)]="editingPosudba.knjigaId"/>
+        </fieldset>
+      </td>
+
+      <td *ngIf="editingIndex!=i"><button class="btn btn-outline-info" (click)="setEdit(i)">Edit</button></td>
+      <td *ngIf="editingIndex==i"><button class="btn btn-outline-info" (click)="doneEditing(i)">Done</button></td>
+
+      <td><button class="btn btn-outline-danger" (click)="deletePosudba(i)">Delete</button></td>
+    </tr>
+  </table>
+
+  <button class="btn btn-success" (click)="add=!add">Posudi knjigu!</button><br/>
+
+  <div *ngIf="add">
+
+    <div style="margin: 10px 0;">
+    Broj posudbe:<br/>
+    <input  type="text" [(ngModel)]="new.brPosudbe"/><br/>
+    Datum posudbe:<br/>
+    <input  type="date" [(ngModel)]="new.datumPosudbe"/><br/>
+    ID korisnika:<br/>
+    <input  type="text" [(ngModel)]="new.korisnikId"/><br/>
+    ID knjige:<br/>
+    <input  type="text" [(ngModel)]="new.knjigaId"/><br/>
+    </div>
+
+    <button class="btn btn-success" (click)="addPosudba()">Add</button>
+  </div>
+</div>
+<div *ngIf="!user.ime" style="text-align: center;">
+  <h3>Molim prijavite se za prikaz stranice!</h3>
+</div>

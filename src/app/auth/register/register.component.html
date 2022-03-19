@@ -1,0 +1,39 @@
+<div class="container">
+  <form class="signup-form form" fxLayout="column" fxLayoutAlign="center center" [formGroup]="registerForm" (ngsubmit)="onSubmit()" (submit)="onSubmit()">
+    <fieldset class="form-group form-item">
+      <input class="form-control" style="margin: 10px 0;" type="text" formControlName="ime" placeholder="Ime" [(ngModel)]="new.ime">
+    </fieldset>
+    <fieldset class="form-group form-item">
+      <input class="form-control" type="text" formControlName="prezime" placeholder="Prezime" [(ngModel)]="new.prezime">
+    </fieldset>
+    <fieldset class="form-group form-item">
+      <input class="form-control" style="margin: 10px 0;" type="email" formControlName="email" placeholder="Email" [(ngModel)]="new.email">
+      <div *ngif="submitted && registerForm.get('email').errors" class="alert alert-danger">
+        <div *ngif="registerForm.get('email').errors.required">
+          Email is required
+        </div>
+      </div>
+    </fieldset>
+    <fieldset class="form-group form-item">
+      <input class="form-control" type="password" formControlName="lozinka" placeholder="Lozinka" [(ngModel)]="new.lozinka">
+      <div *ngif="submitted && registerForm.get('lozinka').errors" class="alert alert-danger">
+        <div *ngif="registerForm.get('lozinka').errors.required">
+          Password is required
+        </div>
+      </div>
+    </fieldset>
+    <fieldset class="form-group form-item">
+      <input class="form-control" style="margin: 10px 0;" type="password" formControlName="lozinka2" placeholder="Ponovi lozinku" [(ngModel)]="lozinka2">
+      <div *ngif="submitted && registerForm.get('lozinka2').errors" class="alert alert-danger">
+        <div *ngif="registerForm.get('lozinka2').errors.required">
+          Confirm Password is required
+        </div>
+        <div *ngif="registerForm.get('lozinka2').errors.confirmPasswordValidator">
+          Passsword and Confirm Password didn't match.
+        </div>
+      </div>
+    </fieldset>
+    <p class="error" [hidden]="!registerForm.invalid"> Lozinke nisu valjane ili se ne podudaraju! </p>
+    <button class="btn btn-success" [disabled]="registerForm.invalid" type="submit"> Register </button>
+  </form>
+</div>
